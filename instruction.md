@@ -1,9 +1,4 @@
-faire TOUS controllers restant avec les memes verbes
 
-- catégories
-- articles
-- commentaires
-- médias
 
 FAIRE :
     async createAuthor(req:express.Request, res:express.Response) {
