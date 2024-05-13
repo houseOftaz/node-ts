@@ -4,7 +4,7 @@ import { Article } from "../../models/article/article.model";
 
 export class ArticleController {
     async getAllArticles(req: express.Request, res: express.Response) {
-        const articles = await Article.find();
+        const articles = await Article.find().populate(["author", "category", "comments"]);
         res.json(new ResponseStructure(articles, 200));
     }
 

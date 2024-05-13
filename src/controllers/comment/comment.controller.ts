@@ -10,7 +10,6 @@ export class CommentController {
 
     async createComment(req: express.Request, res: express.Response) {
         const comment = new Comment();
-        comment.name = req.body.name;
         await comment.save();
         res.json(new ResponseStructure('Nouveau commentaire créé !', 201));
     }

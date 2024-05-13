@@ -7,4 +7,4 @@ const categorySchema = new Schema({
     updatedAt: { type: Date, default: Date.now }
 });
 
-export const Category = model('Author', categorySchema);
+export const Category = model('Category', categorySchema);

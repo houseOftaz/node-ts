@@ -5,28 +5,62 @@ import { Author } from "../../models/author/author.model";
 
 export class AuthorController {
     async getAllAuthors(req:express.Request, res:express.Response) {
-        const authors = await Author.find()
-        res.json(new ResponseStructure(authors, 404));
+        const authors = await Author.find(/*{firstName: { $regex:  'gui', $options: 'i' }}*/);
+        res.json(new ResponseStructure(authors, 200));
     }
 
     async createAuthor(req:express.Request, res:express.Response) {
         const author = new Author();
         author.firstName = req.body.first_name;
+        // AJOUTER LES AUTRES CHAMPS sauf createDate et updateDate
         await author.save();
-        res.json(new ResponseStructure('Hello it\'s a post !', 404));
+        res.json(new ResponseStructure('Hello it\'s a post !', 200));
     }
 
-    editAuthor(req:express.Request, res:express.Response) {
-        console.log(req.query)
-        res.json(new ResponseStructure('it\'s a put !', 404));
+    async editAuthor(req:express.Request, res:express.Response) {
+        let author = null;
+        let code = 200;
+        try {
+            author = await Author.findById(req.params.id);
+        } catch(e) {
+
+        }
+        if (author === null) {
+            res.json(new ResponseStructure(null, 404));
+            return;       
+        }
+        author.firstName = req.body.first_name;
+        author.updatedAt = new Date();
+        // AJOUTER LES AUTRES CHAMPS
+        await Author.updateOne({_id: author._id}, author);
+        res.json(new ResponseStructure(author, 200));
     }
 
-    getById(req:express.Request, res:express.Response) {
-        console.log(req.params)
-        res.json(new ResponseStructure('it get one author !', 404));
+    async getById(req:express.Request, res:express.Response) {
+        // console.log(req.params);
+        let author = null;
+        let code = 200;
+        try {
+            author = await Author.findById(req.params.id);
+        } catch(e) {
+            code = 404;
+        }
+        res.json(new ResponseStructure(author, code));
     }
     
-    deleteAuthor(req:express.Request, res:express.Response) {
-        res.json(new ResponseStructure('it delete one author !', 404));
+    async deleteAuthor(req:express.Request, res:express.Response) {
+        let author = null;
+        let code = 200;
+        try {
+            author = await Author.findById(req.params.id);
+        } catch(e) {
+
+        }
+        if (author === null) {
+            res.json(new ResponseStructure(null, 404));
+            return;       
+        }
+        await Author.deleteOne({_id: author._id})
+        res.json(new ResponseStructure('it delete one author !', 200));
     }
 }

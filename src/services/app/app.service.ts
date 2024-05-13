@@ -25,6 +25,6 @@ export class AppService {
     getExpress():express.Application {
         return this.appExpress;
     }
-}
+};
 
 export const App = new AppService();
