@@ -1,0 +1,15 @@
+// ts node a besoin de ca pour compiler
+
+// config de base
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "esModuleInterop": true,  // explique a ts comment se générer
+      "target": "es6",          // tu target le nouveau standard
+      "moduleResolution": "node", 
+      "sourceMap": true,        // cache
+      "outDir": "dist"          // ou les fichiers compilés vont attérir
+    },
+    "lib": ["es2015"]
+  }
+  
