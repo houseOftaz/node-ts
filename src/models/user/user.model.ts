@@ -6,10 +6,11 @@ const userSchema = new Schema({
     lastName: String,
     bio: String,
     avatar: String,
-    birthDate: Date,
-    email: String,
+    email: {type: String, required: true},
     creditCard: Number,
-    password: /*all*/ Number,
+    password: {type: String, required: true},
+    token: String,
+    birthDate: Date,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 });

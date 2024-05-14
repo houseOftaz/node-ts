@@ -10,7 +10,7 @@ export class MediaController {
 
     async createMedia(req: express.Request, res: express.Response) {
         const media = new Media();
-        media.name = req.body.name;
+        media.title = req.body.title;
         // Set other properties of the media as needed
         await media.save();
         res.json(new ResponseStructure('Nouveau média créé !', 201));

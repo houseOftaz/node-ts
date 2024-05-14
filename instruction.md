@@ -1,5 +1,9 @@
-FAIRE MODEL user: email, pswd, first+lastName, rôles[];
-(controllers)
+
+
+faire l'insertion des données, crud pour tous les controllers => EX AUTHOR
+AJOUTER LES AUTRES CHAMPS sauf createDate et updateDate
++ put (edit)
+
 
 
 INFO
